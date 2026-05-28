@@ -1,6 +1,7 @@
 package com.github.sanzhidev.moviereviewapi.tmdb.client;
 
 import com.github.sanzhidev.moviereviewapi.config.TmdbProperties;
+import com.github.sanzhidev.moviereviewapi.tmdb.dto.TmdbMovieResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClient;
@@ -13,7 +14,7 @@ public class TmdbClient {
 
     private final TmdbProperties properties;
 
-    public String searchMovie(String query){
+    public TmdbMovieResponse searchMovie(String query) {
 
         return restClient.get()
                 .uri(uriBuilder  -> uriBuilder
@@ -22,6 +23,6 @@ public class TmdbClient {
                         .queryParam("query",query)
                         .build())
                 .retrieve()
-                .body(String.class);
+                .body(TmdbMovieResponse.class);
     }
 }

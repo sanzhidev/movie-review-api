@@ -1,6 +1,7 @@
 package com.github.sanzhidev.moviereviewapi.tmdb;
 
 import com.github.sanzhidev.moviereviewapi.tmdb.client.TmdbClient;
+import com.github.sanzhidev.moviereviewapi.tmdb.dto.TmdbMovieResponse;
 import jakarta.persistence.NamedStoredProcedureQuery;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,7 +15,7 @@ public class TestTmdbController {
     private final TmdbClient tmdbClient;
 
     @GetMapping("/tmdb")
-    public String test(@RequestParam String query){
+    public TmdbMovieResponse test(@RequestParam String query){
         return tmdbClient.searchMovie(query);
     }
 }
