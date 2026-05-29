@@ -1,0 +1,31 @@
+package com.github.sanzhidev.moviereviewapi.domain.movie.service;
+
+import com.github.sanzhidev.moviereviewapi.domain.movie.entity.Movie;
+import com.github.sanzhidev.moviereviewapi.domain.movie.entity.repository.MovieRepository;
+import com.github.sanzhidev.moviereviewapi.tmdb.client.TmdbClient;
+import com.github.sanzhidev.moviereviewapi.tmdb.dto.TmdbMovieDto;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+
+@Service
+@RequiredArgsConstructor
+public class MovieService {
+
+    private final MovieRepository  movieRepository;
+    private final TmdbClient tmdbClient;
+
+    public Movie importMovie(String query){
+
+        TmdbMovieDto dto = tmdbClient
+                .searchMovie(query)
+                .getResults()
+                .getFirst();
+
+        Movie movie = new Movie();
+
+        movie.setTitle(dto.getTitle());
+        movie.setOverview(dto.getOverview());
+
+        return movieRepository.save(movie);
+    }
+}
