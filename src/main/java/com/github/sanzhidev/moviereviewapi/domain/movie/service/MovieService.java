@@ -7,12 +7,26 @@ import com.github.sanzhidev.moviereviewapi.tmdb.dto.TmdbMovieDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
+import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
+
 @Service
 @RequiredArgsConstructor
 public class MovieService {
 
     private final MovieRepository  movieRepository;
     private final TmdbClient tmdbClient;
+
+
+    public List<Movie> getAllMovies(){
+        return movieRepository.findAll();
+    }
+
+    public Movie getMovieById(Long id) {
+        return movieRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Movie not found"));
+    }
 
     public Movie importMovie(String query){
 

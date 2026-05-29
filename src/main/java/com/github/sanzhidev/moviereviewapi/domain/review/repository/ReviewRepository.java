@@ -1,6 +1,6 @@
-package com.github.sanzhidev.moviereviewapi.domain.review.entity.repository;
+package com.github.sanzhidev.moviereviewapi.domain.review.repository;
 
-import com.github.sanzhidev.moviereviewapi.domain.review.entity.Review;
+import com.github.sanzhidev.moviereviewapi.domain.review.Review;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.github.sanzhidev.moviereviewapi.domain.review.entity;
+package com.github.sanzhidev.moviereviewapi.domain.review;
 
 import com.github.sanzhidev.moviereviewapi.domain.movie.entity.Movie;
 import com.github.sanzhidev.moviereviewapi.domain.user.entity.User;
