@@ -5,6 +5,8 @@ import com.github.sanzhidev.moviereviewapi.domain.movie.entity.repository.MovieR
 import com.github.sanzhidev.moviereviewapi.tmdb.client.TmdbClient;
 import com.github.sanzhidev.moviereviewapi.tmdb.dto.TmdbMovieDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,15 +21,19 @@ public class MovieService {
     private final TmdbClient tmdbClient;
 
 
+    @Cacheable("movies")
     public List<Movie> getAllMovies(){
         return movieRepository.findAll();
     }
 
+    @Cacheable(value = "movies",key = "#id")
     public Movie getMovieById(Long id) {
         return movieRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Movie not found"));
     }
 
+
+    @CacheEvict(value = "movies", allEntries = true)
     public Movie importMovie(String query){
 
         TmdbMovieDto dto = tmdbClient
