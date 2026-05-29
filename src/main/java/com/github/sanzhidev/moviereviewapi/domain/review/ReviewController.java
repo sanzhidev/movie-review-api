@@ -1,5 +1,6 @@
 package com.github.sanzhidev.moviereviewapi.domain.review;
 
+import com.github.sanzhidev.moviereviewapi.auth.dto.ReviewResponse;
 import com.github.sanzhidev.moviereviewapi.domain.review.repository.ReviewRepository;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
